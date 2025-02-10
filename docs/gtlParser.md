@@ -1,4 +1,0 @@
- 
-# gtlParser module
-
-::: gtlParser.gtlParser
