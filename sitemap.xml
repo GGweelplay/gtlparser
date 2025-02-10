@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://GGweelplay.github.io/GTL/</loc>
+         <loc>https://GGweelplay.github.io/gtlparser/</loc>
          <lastmod>2025-02-10</lastmod>
     </url>
     <url>
-         <loc>https://GGweelplay.github.io/GTL/changelog/</loc>
+         <loc>https://GGweelplay.github.io/gtlparser/changelog/</loc>
          <lastmod>2025-02-10</lastmod>
     </url>
     <url>
-         <loc>https://GGweelplay.github.io/GTL/common/</loc>
+         <loc>https://GGweelplay.github.io/gtlparser/common/</loc>
          <lastmod>2025-02-10</lastmod>
     </url>
     <url>
-         <loc>https://GGweelplay.github.io/GTL/contributing/</loc>
+         <loc>https://GGweelplay.github.io/gtlparser/contributing/</loc>
          <lastmod>2025-02-10</lastmod>
     </url>
     <url>
-         <loc>https://GGweelplay.github.io/GTL/faq/</loc>
+         <loc>https://GGweelplay.github.io/gtlparser/faq/</loc>
          <lastmod>2025-02-10</lastmod>
     </url>
     <url>
-         <loc>https://GGweelplay.github.io/GTL/gtlParser/</loc>
+         <loc>https://GGweelplay.github.io/gtlparser/gtlparser/</loc>
          <lastmod>2025-02-10</lastmod>
     </url>
     <url>
-         <loc>https://GGweelplay.github.io/GTL/installation/</loc>
+         <loc>https://GGweelplay.github.io/gtlparser/installation/</loc>
          <lastmod>2025-02-10</lastmod>
     </url>
     <url>
-         <loc>https://GGweelplay.github.io/GTL/usage/</loc>
+         <loc>https://GGweelplay.github.io/gtlparser/usage/</loc>
          <lastmod>2025-02-10</lastmod>
     </url>
     <url>
-         <loc>https://GGweelplay.github.io/GTL/examples/intro/</loc>
+         <loc>https://GGweelplay.github.io/gtlparser/examples/intro/</loc>
          <lastmod>2025-02-10</lastmod>
     </url>
 </urlset>
