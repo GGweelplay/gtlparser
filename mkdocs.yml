@@ -71,6 +71,10 @@ markdown_extensions:
 #         provider: google
 #         property: UA-XXXXXXXXX-X
 
+extra:
+  version:
+    provider: mike
+
 nav:
     - Home: index.md
     - Installation: installation.md
