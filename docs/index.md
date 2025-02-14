@@ -14,3 +14,8 @@
 ## Features
 
 -   TODO
+
+## Usage
+```python
+import gtlparser
+```
