@@ -77,7 +77,7 @@ def parse_placeVisit_items(placeVisit):
     subset_placeVisit = placeVisit.get('placeVisit')
     # Create temporary dict
     temp_allFields_dict = {}
-    # Get values (aggregated fileds) from input
+    # Get values (aggregated fields) from input
     for aggregatedFields in subset_placeVisit:
         if aggregatedFields == 'location':
             parse_placeVisit_location(subset_placeVisit.get(aggregatedFields), temp_allFields_dict)
@@ -139,7 +139,7 @@ def parse_activitySegment_items(activitySegment):
     subset_activitySegment = activitySegment.get('activitySegment')
     # Create temporary dict
     temp_allFields_dict = {}
-    # Get values (aggregated fileds) from input
+    # Get values (aggregated fields) from input
     for aggregatedFields in subset_activitySegment:
         if aggregatedFields == 'startLocation':
             parse_activitySegment_startLocation(subset_activitySegment.get(aggregatedFields), temp_allFields_dict)
