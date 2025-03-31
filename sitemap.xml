@@ -2,42 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://GGweelplay.github.io/gtlparser/</loc>
-         <lastmod>2025-03-21</lastmod>
+         <lastmod>2025-03-31</lastmod>
     </url>
     <url>
          <loc>https://GGweelplay.github.io/gtlparser/changelog/</loc>
-         <lastmod>2025-03-21</lastmod>
+         <lastmod>2025-03-31</lastmod>
     </url>
     <url>
          <loc>https://GGweelplay.github.io/gtlparser/common/</loc>
-         <lastmod>2025-03-21</lastmod>
+         <lastmod>2025-03-31</lastmod>
     </url>
     <url>
          <loc>https://GGweelplay.github.io/gtlparser/contributing/</loc>
-         <lastmod>2025-03-21</lastmod>
+         <lastmod>2025-03-31</lastmod>
     </url>
     <url>
          <loc>https://GGweelplay.github.io/gtlparser/faq/</loc>
-         <lastmod>2025-03-21</lastmod>
+         <lastmod>2025-03-31</lastmod>
     </url>
     <url>
          <loc>https://GGweelplay.github.io/gtlparser/gtlparser/</loc>
-         <lastmod>2025-03-21</lastmod>
+         <lastmod>2025-03-31</lastmod>
     </url>
     <url>
          <loc>https://GGweelplay.github.io/gtlparser/installation/</loc>
-         <lastmod>2025-03-21</lastmod>
+         <lastmod>2025-03-31</lastmod>
     </url>
     <url>
          <loc>https://GGweelplay.github.io/gtlparser/usage/</loc>
-         <lastmod>2025-03-21</lastmod>
+         <lastmod>2025-03-31</lastmod>
+    </url>
+    <url>
+         <loc>https://GGweelplay.github.io/gtlparser/examples/foliumap/</loc>
+         <lastmod>2025-03-31</lastmod>
     </url>
     <url>
          <loc>https://GGweelplay.github.io/gtlparser/examples/intro/</loc>
-         <lastmod>2025-03-21</lastmod>
+         <lastmod>2025-03-31</lastmod>
     </url>
     <url>
          <loc>https://GGweelplay.github.io/gtlparser/examples/map/</loc>
-         <lastmod>2025-03-21</lastmod>
+         <lastmod>2025-03-31</lastmod>
     </url>
 </urlset>
