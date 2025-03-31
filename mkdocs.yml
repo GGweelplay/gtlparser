@@ -86,6 +86,8 @@ nav:
     - Examples:
         - examples/intro.ipynb
         - examples/map.ipynb
+        - examples/folium.ipynb
     - API Reference:
           - gtlparser module: gtlparser.md
           - common module: common.md
+          - foliumap module: foliumap.md
