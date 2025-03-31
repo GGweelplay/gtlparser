@@ -9,10 +9,11 @@ class Map(ipyleaflet.Map):
     A custom Map class that inherits from ipyleaflet.Map and adds additional
     functionalities for basemap support, layer control, and vector data handling.
     """
+
     def __init__(self, center=[20, 0], zoom=2, height="600px", **kwargs):
         """
         Initializes the Map object, inherits from ipyleaflet.Map.
-        
+
         Args:
             center (list): Initial center of the map [latitude, longitude].
             zoom (int): Initial zoom level of the map.
@@ -25,15 +26,15 @@ class Map(ipyleaflet.Map):
     def add_basemap(self, basemap="OpenStreetMap", **kwargs):
         """
         Adds a basemap to the map.
-        
+
         Args:
             basemap_name (str): The name of the basemap to be added.
                 Examples: 'OpenStreetMap', 'Esri.WorldImagery', 'OpenTopoMap'.
             **kwargs: Additional keyword arguments to pass to ipyleaflet.TileLayer.
-        
+
         Raises:
             ValueError: If the provided basemap_name is not found.
-        
+
         Returns:
             None: Adds the basemap to the map.
         """
@@ -54,10 +55,10 @@ class Map(ipyleaflet.Map):
     def add_layer_control(self):
         """
         Adds a layer control widget to the map to manage different layers.
-        
+
         Args:
             None
-        
+
         Returns:
             None: Adds a layer control widget to the map.
         """
@@ -67,12 +68,12 @@ class Map(ipyleaflet.Map):
     def add_vector(self, gdf, layer_name, **kwargs):
         """
         Adds vector data (GeoJSON/Shapefile) to the map.
-        
+
         Args:
             gdf (GeoDataFrame): A GeoDataFrame containing the vector data.
             layer_name (str): The name of the layer to be added.
             **kwargs: Additional keyword arguments to pass to ipyleaflet.GeoData.
-        
+
         Returns:
             None: Adds the vector data to the map as a LayerGroup.
         """
@@ -82,13 +83,13 @@ class Map(ipyleaflet.Map):
     def add_google_maps(self, map_type="ROADMAP"):
         """
         Adds Google Maps basemap to the map.
-        
+
         Args:
             map_type (str): The type of Google Maps to be added.
                 Options: 'ROADMAP', 'SATELLITE', 'HYBRID', 'TERRAIN'.
-        
+
         Returns:
-            None: Adds the Google Maps basemap to the map.        
+            None: Adds the Google Maps basemap to the map.
         """
         map_types = {
             "ROADMAP": "m",
