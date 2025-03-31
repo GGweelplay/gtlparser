@@ -613,6 +613,66 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#gtlparser.gtlparser.Map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Map
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Map">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gtlparser.gtlparser.Map.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gtlparser.gtlparser.Map.add_basemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_basemap()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gtlparser.gtlparser.Map.add_google_maps" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_google_maps()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gtlparser.gtlparser.Map.add_layer_control" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_layer_control()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gtlparser.gtlparser.Map.add_vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_vector()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -687,6 +747,66 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#gtlparser.gtlparser.Map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Map
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Map">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gtlparser.gtlparser.Map.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gtlparser.gtlparser.Map.add_basemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_basemap()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gtlparser.gtlparser.Map.add_google_maps" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_google_maps()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gtlparser.gtlparser.Map.add_layer_control" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_layer_control()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gtlparser.gtlparser.Map.add_vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_vector()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -727,6 +847,552 @@
 
 
 
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="gtlparser.gtlparser.Map" class="doc doc-heading">
+        <code>
+Map            (<span title="ipyleaflet.leaflet.Map">Map</span>)
+        </code>
+
+
+
+<a href="#gtlparser.gtlparser.Map" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>A custom Map class that inherits from ipyleaflet.Map and adds additional
+functionalities for basemap support, layer control, and vector data handling.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>gtlparser/gtlparser.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Map</span><span class="p">(</span><span class="n">ipyleaflet</span><span class="o">.</span><span class="n">Map</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A custom Map class that inherits from ipyleaflet.Map and adds additional</span>
+<span class="sd">    functionalities for basemap support, layer control, and vector data handling.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;600px&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the Map object, inherits from ipyleaflet.Map.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            center (list): Initial center of the map [latitude, longitude].</span>
+<span class="sd">            zoom (int): Initial zoom level of the map.</span>
+<span class="sd">            height (str): Height of the map in CSS units (e.g., &quot;600px&quot;).</span>
+<span class="sd">            **kwargs: Additional keyword arguments to pass to ipyleaflet.Map.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="n">zoom</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="o">=</span><span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a basemap to the map.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            basemap_name (str): The name of the basemap to be added.</span>
+<span class="sd">                Examples: &#39;OpenStreetMap&#39;, &#39;Esri.WorldImagery&#39;, &#39;OpenTopoMap&#39;.</span>
+<span class="sd">            **kwargs: Additional keyword arguments to pass to ipyleaflet.TileLayer.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If the provided basemap_name is not found.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None: Adds the basemap to the map.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">xyzservices_return</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ipyleaflet.basemaps.</span><span class="si">{</span><span class="n">basemap</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">xyzservices_return</span><span class="p">)</span> <span class="o">==</span> <span class="n">xyzservices</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">TileProvider</span><span class="p">:</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">xyzservices_return</span><span class="o">.</span><span class="n">build_url</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">xyzservices_return</span><span class="p">)</span> <span class="o">==</span> <span class="n">xyzservices</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">Bunch</span><span class="p">:</span>
+                <span class="n">subset</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;subset&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">subset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">subset</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">xyzservices_return</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ipyleaflet.basemaps.</span><span class="si">{</span><span class="n">basemap</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">build_url</span><span class="p">()</span>
+            <span class="n">layer</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">basemap</span> <span class="o">+</span> <span class="n">subset</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Basemap &#39;</span><span class="si">{</span><span class="n">basemap</span><span class="si">}</span><span class="s2">&#39; not found in ipyleaflet basemaps.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_layer_control</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a layer control widget to the map to manage different layers.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None: Adds a layer control widget to the map.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">layer_control</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">LayersControl</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_control</span><span class="p">(</span><span class="n">layer_control</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds vector data (GeoJSON/Shapefile) to the map.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            gdf (GeoDataFrame): A GeoDataFrame containing the vector data.</span>
+<span class="sd">            layer_name (str): The name of the layer to be added.</span>
+<span class="sd">            **kwargs: Additional keyword arguments to pass to ipyleaflet.GeoData.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None: Adds the vector data to the map as a LayerGroup.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">geodata</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">GeoData</span><span class="p">(</span><span class="n">geo_dataframe</span><span class="o">=</span><span class="n">gdf</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">layer_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">geodata</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_google_maps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_type</span><span class="o">=</span><span class="s2">&quot;ROADMAP&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds Google Maps basemap to the map.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            map_type (str): The type of Google Maps to be added.</span>
+<span class="sd">                Options: &#39;ROADMAP&#39;, &#39;SATELLITE&#39;, &#39;HYBRID&#39;, &#39;TERRAIN&#39;.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None: Adds the Google Maps basemap to the map.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">map_types</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;ROADMAP&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SATELLITE&quot;</span><span class="p">:</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;HYBRID&quot;</span><span class="p">:</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;TERRAIN&quot;</span><span class="p">:</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">map_type</span> <span class="o">=</span> <span class="n">map_types</span><span class="p">[</span><span class="n">map_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;https://mt1.google.com/vt/lyrs=</span><span class="si">{</span><span class="n">map_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s2">&amp;x=</span><span class="se">{{</span><span class="s2">x</span><span class="se">}}</span><span class="s2">&amp;y=</span><span class="se">{{</span><span class="s2">y</span><span class="se">}}</span><span class="s2">&amp;z=</span><span class="se">{{</span><span class="s2">z</span><span class="se">}}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">layer</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Google Maps&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="gtlparser.gtlparser.Map.__init__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">&#39;600px&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#gtlparser.gtlparser.Map.__init__" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Initializes the Map object, inherits from ipyleaflet.Map.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>center</code></td>
+        <td><code>list</code></td>
+        <td><p>Initial center of the map [latitude, longitude].</p></td>
+        <td><code>[20, 0]</code></td>
+      </tr>
+      <tr>
+        <td><code>zoom</code></td>
+        <td><code>int</code></td>
+        <td><p>Initial zoom level of the map.</p></td>
+        <td><code>2</code></td>
+      </tr>
+      <tr>
+        <td><code>height</code></td>
+        <td><code>str</code></td>
+        <td><p>Height of the map in CSS units (e.g., "600px").</p></td>
+        <td><code>&#39;600px&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td></td>
+        <td><p>Additional keyword arguments to pass to ipyleaflet.Map.</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>gtlparser/gtlparser.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;600px&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initializes the Map object, inherits from ipyleaflet.Map.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        center (list): Initial center of the map [latitude, longitude].</span>
+<span class="sd">        zoom (int): Initial zoom level of the map.</span>
+<span class="sd">        height (str): Height of the map in CSS units (e.g., &quot;600px&quot;).</span>
+<span class="sd">        **kwargs: Additional keyword arguments to pass to ipyleaflet.Map.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="n">zoom</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="gtlparser.gtlparser.Map.add_basemap" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">add_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="o">=</span><span class="s1">&#39;OpenStreetMap&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#gtlparser.gtlparser.Map.add_basemap" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Adds a basemap to the map.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>basemap_name</code></td>
+        <td><code>str</code></td>
+        <td><p>The name of the basemap to be added.
+Examples: 'OpenStreetMap', 'Esri.WorldImagery', 'OpenTopoMap'.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td></td>
+        <td><p>Additional keyword arguments to pass to ipyleaflet.TileLayer.</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>ValueError</code></td>
+        <td><p>If the provided basemap_name is not found.</p></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>None</code></td>
+      <td><p>Adds the basemap to the map.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>gtlparser/gtlparser.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="o">=</span><span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds a basemap to the map.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        basemap_name (str): The name of the basemap to be added.</span>
+<span class="sd">            Examples: &#39;OpenStreetMap&#39;, &#39;Esri.WorldImagery&#39;, &#39;OpenTopoMap&#39;.</span>
+<span class="sd">        **kwargs: Additional keyword arguments to pass to ipyleaflet.TileLayer.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If the provided basemap_name is not found.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None: Adds the basemap to the map.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">xyzservices_return</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ipyleaflet.basemaps.</span><span class="si">{</span><span class="n">basemap</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">xyzservices_return</span><span class="p">)</span> <span class="o">==</span> <span class="n">xyzservices</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">TileProvider</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">xyzservices_return</span><span class="o">.</span><span class="n">build_url</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">xyzservices_return</span><span class="p">)</span> <span class="o">==</span> <span class="n">xyzservices</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">Bunch</span><span class="p">:</span>
+            <span class="n">subset</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;subset&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">subset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">subset</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">xyzservices_return</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ipyleaflet.basemaps.</span><span class="si">{</span><span class="n">basemap</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">build_url</span><span class="p">()</span>
+        <span class="n">layer</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">basemap</span> <span class="o">+</span> <span class="n">subset</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Basemap &#39;</span><span class="si">{</span><span class="n">basemap</span><span class="si">}</span><span class="s2">&#39; not found in ipyleaflet basemaps.&quot;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="gtlparser.gtlparser.Map.add_google_maps" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">add_google_maps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_type</span><span class="o">=</span><span class="s1">&#39;ROADMAP&#39;</span><span class="p">)</span></code>
+
+
+<a href="#gtlparser.gtlparser.Map.add_google_maps" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Adds Google Maps basemap to the map.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>map_type</code></td>
+        <td><code>str</code></td>
+        <td><p>The type of Google Maps to be added.
+Options: 'ROADMAP', 'SATELLITE', 'HYBRID', 'TERRAIN'.</p></td>
+        <td><code>&#39;ROADMAP&#39;</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>None</code></td>
+      <td><p>Adds the Google Maps basemap to the map.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>gtlparser/gtlparser.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_google_maps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_type</span><span class="o">=</span><span class="s2">&quot;ROADMAP&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds Google Maps basemap to the map.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        map_type (str): The type of Google Maps to be added.</span>
+<span class="sd">            Options: &#39;ROADMAP&#39;, &#39;SATELLITE&#39;, &#39;HYBRID&#39;, &#39;TERRAIN&#39;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None: Adds the Google Maps basemap to the map.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">map_types</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;ROADMAP&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SATELLITE&quot;</span><span class="p">:</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;HYBRID&quot;</span><span class="p">:</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;TERRAIN&quot;</span><span class="p">:</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">map_type</span> <span class="o">=</span> <span class="n">map_types</span><span class="p">[</span><span class="n">map_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;https://mt1.google.com/vt/lyrs=</span><span class="si">{</span><span class="n">map_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s2">&amp;x=</span><span class="se">{{</span><span class="s2">x</span><span class="se">}}</span><span class="s2">&amp;y=</span><span class="se">{{</span><span class="s2">y</span><span class="se">}}</span><span class="s2">&amp;z=</span><span class="se">{{</span><span class="s2">z</span><span class="se">}}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="n">layer</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Google Maps&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="gtlparser.gtlparser.Map.add_layer_control" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">add_layer_control</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+<a href="#gtlparser.gtlparser.Map.add_layer_control" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Adds a layer control widget to the map to manage different layers.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>None</code></td>
+      <td><p>Adds a layer control widget to the map.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>gtlparser/gtlparser.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_layer_control</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds a layer control widget to the map to manage different layers.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None: Adds a layer control widget to the map.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">layer_control</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">LayersControl</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add_control</span><span class="p">(</span><span class="n">layer_control</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="gtlparser.gtlparser.Map.add_vector" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">add_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#gtlparser.gtlparser.Map.add_vector" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Adds vector data (GeoJSON/Shapefile) to the map.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>gdf</code></td>
+        <td><code>GeoDataFrame</code></td>
+        <td><p>A GeoDataFrame containing the vector data.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>layer_name</code></td>
+        <td><code>str</code></td>
+        <td><p>The name of the layer to be added.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td></td>
+        <td><p>Additional keyword arguments to pass to ipyleaflet.GeoData.</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>None</code></td>
+      <td><p>Adds the vector data to the map as a LayerGroup.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>gtlparser/gtlparser.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds vector data (GeoJSON/Shapefile) to the map.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        gdf (GeoDataFrame): A GeoDataFrame containing the vector data.</span>
+<span class="sd">        layer_name (str): The name of the layer to be added.</span>
+<span class="sd">        **kwargs: Additional keyword arguments to pass to ipyleaflet.GeoData.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None: Adds the vector data to the map as a LayerGroup.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">geodata</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">GeoData</span><span class="p">(</span><span class="n">geo_dataframe</span><span class="o">=</span><span class="n">gdf</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">layer_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">geodata</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
 
 
 
