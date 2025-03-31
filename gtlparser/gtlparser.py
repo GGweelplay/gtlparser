@@ -3,13 +3,14 @@
 import ipyleaflet
 import xyzservices
 
+
 class Map(ipyleaflet.Map):
     def __init__(self, center=[20, 0], zoom=2, height="600px", **kwargs):
         super().__init__(center=center, zoom=zoom, **kwargs)
         self.layout.height = height
 
     def add_basemap(self, basemap="OpenStreetMap", **kwargs):
-        
+
         try:
             xyzservices_return = eval(f"ipyleaflet.basemaps.{basemap}")
             if type(xyzservices_return) == xyzservices.lib.TileProvider:
@@ -19,10 +20,10 @@ class Map(ipyleaflet.Map):
                 if subset is None:
                     subset = list(xyzservices_return.keys())[0]
                 url = eval(f"ipyleaflet.basemaps.{basemap}.{subset}").build_url()
-            layer = ipyleaflet.TileLayer(url=url, name=basemap+subset)
+            layer = ipyleaflet.TileLayer(url=url, name=basemap + subset)
             self.add(layer)
         except:
-            raise ValueError(f"Basemap '{basemap}' not found in ipyleaflet basemaps.")        
+            raise ValueError(f"Basemap '{basemap}' not found in ipyleaflet basemaps.")
 
     def add_layer_control(self):
         layer_control = ipyleaflet.LayersControl(position="topright")
@@ -42,8 +43,8 @@ class Map(ipyleaflet.Map):
         }
         map_type = map_types[map_type.upper()]
 
-        url = f"https://mt1.google.com/vt/lyrs={map_type.lower()}&x={{x}}&y={{y}}&z={{z}}"
+        url = (
+            f"https://mt1.google.com/vt/lyrs={map_type.lower()}&x={{x}}&y={{y}}&z={{z}}"
+        )
         layer = ipyleaflet.TileLayer(url=url, name="Google Maps")
         self.add(layer)
-
-

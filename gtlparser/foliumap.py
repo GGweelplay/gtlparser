@@ -1,6 +1,5 @@
-
-
 import folium
+
 
 class Map(folium.Map):
     def __init__(self, location=[20, 0], zoom_start=2, height="100%", **kwargs):
