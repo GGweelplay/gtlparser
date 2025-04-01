@@ -2,6 +2,7 @@
 
 import ipyleaflet
 
+
 class Map(ipyleaflet.Map):
     """
     A custom Map class that inherits from ipyleaflet.Map and adds additional
@@ -114,15 +115,15 @@ class Map(ipyleaflet.Map):
         )
         layer = ipyleaflet.TileLayer(url=url, name="Google Maps")
         self.add(layer)
-    
+
     def add_geojson(self, data, hover_style=None, **kwargs):
         """Adds a GeoJSON layer to the map.
-        
+
         Args:
             data (str or dict): The GeoJson data. Can be a file path (str) or a dictionary.
             hover_style (dict, optional): Style to apply when hovering over features. Defaults to {"color": "yellow", "fillOpacity": 0.2}
             **kwargs: Additinoal keyword arguments for the ipyleaflet.GeoJSON layer.
-            
+
         Raises:
             ValueError: If the data type is invalid
         """
@@ -141,7 +142,7 @@ class Map(ipyleaflet.Map):
 
     def add_shp(self, data, **kwargs):
         """Adds a shapefile layer to the map.
-        
+
         Args:
             data (str): Path to the shapefile.
             **kwargs: Additional keyword arguments for the ipyleaflet.GeoJSON layer.
@@ -155,7 +156,7 @@ class Map(ipyleaflet.Map):
 
     def add_gdf(self, gdf, **kwargs):
         """Adds a GeoDataFrame layer to the map.
-        
+
         Args:
             gdf (GeoDataFrame): The GeoDataFrame to be added to the map.
             **kwargs: Additional keyword arguments for the ipyleaflet.GeoJSON layer.
