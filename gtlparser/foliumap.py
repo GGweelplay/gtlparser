@@ -76,7 +76,7 @@ class Map(folium.Map):
         Args:
             data (str or dict): The GeoJson data. Can be a file path (str) or a dictionary.
             **kwargs: Additinoal keyword arguments for the ipyleaflet.GeoJSON layer.
-            
+
         Raises:
             ValueError: If the data type is invalid
         """
@@ -87,7 +87,7 @@ class Map(folium.Map):
             geojson = gdf.__geo_interface__
         elif isinstance(data, dict):
             geojson = data
-        
+
         geojson = folium.GeoJson(data=geojson, **kwargs)
         geojson.add_to(self)
 
