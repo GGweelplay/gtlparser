@@ -1,7 +1,6 @@
 """Main module."""
 
 import ipyleaflet
-import xyzservices
 
 
 class Map(ipyleaflet.Map):
@@ -22,6 +21,7 @@ class Map(ipyleaflet.Map):
         """
         super().__init__(center=center, zoom=zoom, **kwargs)
         self.layout.height = height
+        self.scroll_wheel_zoom = True
 
     def add_basemap(self, basemap="OpenStreetMap", **kwargs):
         """
@@ -38,6 +38,8 @@ class Map(ipyleaflet.Map):
         Returns:
             None: Adds the basemap to the map.
         """
+        import xyzservices
+
         try:
             xyzservices_return = eval(f"ipyleaflet.basemaps.{basemap}")
             if type(xyzservices_return) == xyzservices.lib.TileProvider:
@@ -65,20 +67,29 @@ class Map(ipyleaflet.Map):
         layer_control = ipyleaflet.LayersControl(position="topright")
         self.add_control(layer_control)
 
-    def add_vector(self, gdf, layer_name, **kwargs):
+    def add_vector(self, data, **kwargs):
         """
         Adds vector data (GeoJSON/Shapefile) to the map.
 
         Args:
-            gdf (GeoDataFrame): A GeoDataFrame containing the vector data.
-            layer_name (str): The name of the layer to be added.
-            **kwargs: Additional keyword arguments to pass to ipyleaflet.GeoData.
+            data (str or GeoDataFrame): The vector data to be added to the map.
+                Can be a file path (str) or a GeoDataFrame.
+            **kwargs: Additional keyword arguments for the GeoJSON layer.
 
-        Returns:
-            None: Adds the vector data to the map as a LayerGroup.
+        Raises:
+            ValueError: If the data type is invalid.
         """
-        geodata = ipyleaflet.GeoData(geo_dataframe=gdf, name=layer_name, **kwargs)
-        self.add(geodata)
+        import geopandas as gpd
+
+        if isinstance(data, str):
+            gdf = gpd.read_file(data)
+            self.add_gdf(gdf, **kwargs)
+        elif isinstance(data, gpd.GeoDataFrame):
+            self.add_gdf(data, **kwargs)
+        elif isinstance(data, dict):
+            self.add_geojson(data, **kwargs)
+        else:
+            raise ValueError("Invalid data type.")
 
     def add_google_maps(self, map_type="ROADMAP"):
         """
@@ -104,3 +115,52 @@ class Map(ipyleaflet.Map):
         )
         layer = ipyleaflet.TileLayer(url=url, name="Google Maps")
         self.add(layer)
+
+    def add_geojson(self, data, hover_style=None, **kwargs):
+        """Adds a GeoJSON layer to the map.
+
+        Args:
+            data (str or dict): The GeoJson data. Can be a file path (str) or a dictionary.
+            hover_style (dict, optional): Style to apply when hovering over features. Defaults to {"color": "yellow", "fillOpacity": 0.2}
+            **kwargs: Additinoal keyword arguments for the ipyleaflet.GeoJSON layer.
+
+        Raises:
+            ValueError: If the data type is invalid
+        """
+        import geopandas as gpd
+
+        if hover_style is None:
+            hover_style = {"color": "yellow", "fillOpacity": 0.2}
+
+        if isinstance(data, str):
+            gdf = gpd.read_file(data)
+            geojson = gdf.__geo_interface__
+        elif isinstance(data, dict):
+            geojson = data
+        layer = ipyleaflet.GeoJSON(data=geojson, hover_style=hover_style, **kwargs)
+        self.add(layer)
+
+    def add_shp(self, data, **kwargs):
+        """Adds a shapefile layer to the map.
+
+        Args:
+            data (str): Path to the shapefile.
+            **kwargs: Additional keyword arguments for the ipyleaflet.GeoJSON layer.
+        """
+        import geopandas as gpd
+
+        gdf = gpd.read_file(data)
+        gdf = gdf.to_crs(epsg=4326)
+        geojson = gdf.__geo_interface__
+        self.add_geojson(geojson, **kwargs)
+
+    def add_gdf(self, gdf, **kwargs):
+        """Adds a GeoDataFrame layer to the map.
+
+        Args:
+            gdf (GeoDataFrame): The GeoDataFrame to be added to the map.
+            **kwargs: Additional keyword arguments for the ipyleaflet.GeoJSON layer.
+        """
+        gdf = gdf.to_crs(epsg=4326)
+        geojson = gdf.__geo_interface__
+        self.add_geojson(geojson, **kwargs)
