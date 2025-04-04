@@ -123,3 +123,32 @@ class Map(folium.Map):
         gdf = gdf.to_crs(epsg=4326)
         geojson = gdf.__geo_interface__
         self.add_geojson(geojson, **kwargs)
+
+    def add_split_map(self, left="openstreetmap", right="cartodbpositron", **kwargs):
+        """
+        Adds a split map to the map.
+
+        Args:
+            left (folium.Map): The left map to be added.
+            right (folium.Map): The right map to be added.
+            **kwargs: Additional keyword arguments for folium.SplitMap.
+
+        Returns:
+            None: Adds the split map to the map.
+        """
+
+        # Directly pass the 'left' and 'right' arguments (URLs or file paths) 
+        # to get_leaflet_tile_layer
+
+        from localtileserver import TileClient, get_leaflet_tile_layer
+
+        layer_right = folium.TileLayer(left, **kwargs)
+        layer_left = folium.TileLayer(right, **kwargs)
+
+        sbs = folium.plugins.SideBySideLayers(
+            layer_left=layer_left, layer_right=layer_right
+        )
+
+        layer_left.add_to(self)
+        layer_right.add_to(self)
+        sbs.add_to(self)
