@@ -140,18 +140,18 @@ class Map(folium.Map):
         # Directly pass the 'left' and 'right' arguments (URLs or file paths)
         # to get_leaflet_tile_layer
 
-        from localtileserver import  get_folium_tile_layer
+        from localtileserver import get_folium_tile_layer
         from folium import plugins
 
         if left == "openstreetmap":
-          left_tile_layer = folium.TileLayer(left)
+            left_tile_layer = folium.TileLayer(left)
         else:
-          left_tile_layer = get_folium_tile_layer(left, name="Left Layer")
+            left_tile_layer = get_folium_tile_layer(left, name="Left Layer")
 
         if right == "cartodbpositron":
-          right_tile_layer = folium.TileLayer(right)
+            right_tile_layer = folium.TileLayer(right)
         else:
-          right_tile_layer = get_folium_tile_layer(right, name="Right Layer")
+            right_tile_layer = get_folium_tile_layer(right, name="Right Layer")
 
         left_tile_layer.add_to(self)
         right_tile_layer.add_to(self)
