@@ -153,7 +153,6 @@ class Map(folium.Map):
         else:
           right_tile_layer = get_folium_tile_layer(right, name="Right Layer")
 
-<<<<<<< HEAD
         left_tile_layer.add_to(self)
         right_tile_layer.add_to(self)
 
@@ -161,8 +160,3 @@ class Map(folium.Map):
         side_by_side.add_to(self)
 
         self.add_child(folium.LayerControl())
-=======
-        layer_left.add_to(self)
-        layer_right.add_to(self)
-        sbs.add_to(self)
->>>>>>> f39e73b227a75331960dbed2080d89d287d5a580
