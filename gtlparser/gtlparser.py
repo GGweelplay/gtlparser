@@ -173,15 +173,16 @@ class Map(ipyleaflet.Map):
             **kwargs: Additional keyword arguments for the ipyleaflet.ImageOverlay layer.
         """
         from localtileserver import TileClient, get_leaflet_tile_layer
-        
+
         client = ipyleaflet.TileLayer(filepath)
-        tile_layer = get_leaflet_tile_layer(client, colormap=colormap, opacity=opacity, **kwargs)
+        tile_layer = get_leaflet_tile_layer(
+            client, colormap=colormap, opacity=opacity, **kwargs
+        )
 
         self.add(tile_layer)
         self.center = client.center()
         self.zoom = client.default_zoom
 
-    
     def add_image(self, image, bounds=None, opacity=1.0, **kwargs):
         """Adds an image overlay to the map.
 
@@ -218,7 +219,9 @@ class Map(ipyleaflet.Map):
         layer = VideoOverlay(url=video, bounds=bounds, opacity=opacity, **kwargs)
         self.add(layer)
 
-    def add_WMS_layer(self, url, layers, name, format="image/png", transparent=True, **kwargs):
+    def add_WMS_layer(
+        self, url, layers, name, format="image/png", transparent=True, **kwargs
+    ):
         """Adds a WMS layer to the map.
 
         Args:
@@ -229,9 +232,16 @@ class Map(ipyleaflet.Map):
             ValueError: If the WMSLayer is not found.
         """
         from ipyleaflet import WMSLayer
-        
+
         try:
-            layer = WMSLayer(url=url, layers=layers, name=name, format=format, transparent=transparent, **kwargs)
+            layer = WMSLayer(
+                url=url,
+                layers=layers,
+                name=name,
+                format=format,
+                transparent=transparent,
+                **kwargs,
+            )
             self.add(layer)
         except:
             raise ValueError(f"WMS Layer '{layer}' not found.")
