@@ -137,7 +137,7 @@ class Map(folium.Map):
             None: Adds the split map to the map.
         """
 
-        # Directly pass the 'left' and 'right' arguments (URLs or file paths) 
+        # Directly pass the 'left' and 'right' arguments (URLs or file paths)
         # to get_leaflet_tile_layer
 
         from localtileserver import TileClient, get_leaflet_tile_layer
