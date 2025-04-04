@@ -164,3 +164,74 @@ class Map(ipyleaflet.Map):
         gdf = gdf.to_crs(epsg=4326)
         geojson = gdf.__geo_interface__
         self.add_geojson(geojson, **kwargs)
+
+    def add_raster(self, filepath, colormap="RdYlBu_11", opacity=1.0, **kwargs):
+        """Adds a raster layer to the map.
+
+        Args:
+            filepath (str): Path to the raster file.
+            **kwargs: Additional keyword arguments for the ipyleaflet.ImageOverlay layer.
+        """
+        from localtileserver import TileClient, get_leaflet_tile_layer
+        
+        client = ipyleaflet.TileLayer(filepath)
+        tile_layer = get_leaflet_tile_layer(client, colormap=colormap, opacity=opacity, **kwargs)
+
+        self.add(tile_layer)
+        self.center = client.center()
+        self.zoom = client.default_zoom
+
+    
+    def add_image(self, image, bounds=None, opacity=1.0, **kwargs):
+        """Adds an image overlay to the map.
+
+        Args:
+            image (str): Path to the image file.
+            bounds (list): Bounds of the image in the format [[lat1, lon1], [lat2, lon2]].
+            **kwargs: Additional keyword arguments for the ipyleaflet.ImageOverlay layer.
+
+        Raises:
+            ValueError: If the bounds are not provided.
+        """
+        from ipyleaflet import ImageOverlay
+
+        if bounds is None:
+            bounds = [[-90, -180], [90, 180]]
+        layer = ImageOverlay(url=image, bounds=bounds, opacity=opacity, **kwargs)
+        self.add(layer)
+
+    def add_video(self, video, bounds=None, opacity=1.0, **kwargs):
+        """Adds a video overlay to the map.
+
+        Args:
+            video (str): Path to the video file.
+            bounds (list): Bounds of the video in the format [[lat1, lon1], [lat2, lon2]].
+            **kwargs: Additional keyword arguments for the ipyleaflet.VideoOverlay layer.
+
+        Raises:
+            ValueError: If the bounds are not provided.
+        """
+        from ipyleaflet import VideoOverlay
+
+        if bounds is None:
+            bounds = [[-90, -180], [90, 180]]
+        layer = VideoOverlay(url=video, bounds=bounds, opacity=opacity, **kwargs)
+        self.add(layer)
+
+    def add_WMS_layer(self, url, layers, name, format="image/png", transparent=True, **kwargs):
+        """Adds a WMS layer to the map.
+
+        Args:
+            WMSLayer (str): URL of the WMS layer.
+            **kwargs: Additional keyword arguments for the ipyleaflet.WMSLayer layer.
+
+        Raises:
+            ValueError: If the WMSLayer is not found.
+        """
+        from ipyleaflet import WMSLayer
+        
+        try:
+            layer = WMSLayer(url=url, layers=layers, name=name, format=format, transparent=transparent, **kwargs)
+            self.add(layer)
+        except:
+            raise ValueError(f"WMS Layer '{layer}' not found.")
