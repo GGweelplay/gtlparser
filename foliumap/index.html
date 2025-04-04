@@ -748,6 +748,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#gtlparser.foliumap.Map.add_split_map" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_split_map()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gtlparser.foliumap.Map.add_vector" class="md-nav__link">
     <span class="md-ellipsis">
       add_vector()
@@ -871,6 +880,15 @@
   <a href="#gtlparser.foliumap.Map.add_shp" class="md-nav__link">
     <span class="md-ellipsis">
       add_shp()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gtlparser.foliumap.Map.add_split_map" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_split_map()
     </span>
   </a>
   
@@ -1072,6 +1090,43 @@ functionalities for basemap support, layer control, and vector data handling.</p
         <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
         <span class="n">geojson</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">__geo_interface__</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_geojson</span><span class="p">(</span><span class="n">geojson</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_split_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="s2">&quot;openstreetmap&quot;</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="s2">&quot;cartodbpositron&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a split map to the map.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            left (folium.Map): The left map to be added.</span>
+<span class="sd">            right (folium.Map): The right map to be added.</span>
+<span class="sd">            **kwargs: Additional keyword arguments for folium.SplitMap.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None: Adds the split map to the map.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Directly pass the &#39;left&#39; and &#39;right&#39; arguments (URLs or file paths)</span>
+        <span class="c1"># to get_leaflet_tile_layer</span>
+
+        <span class="kn">from</span><span class="w"> </span><span class="nn">localtileserver</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_folium_tile_layer</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">folium</span><span class="w"> </span><span class="kn">import</span> <span class="n">plugins</span>
+
+        <span class="k">if</span> <span class="n">left</span> <span class="o">==</span> <span class="s2">&quot;openstreetmap&quot;</span><span class="p">:</span>
+            <span class="n">left_tile_layer</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">left_tile_layer</span> <span class="o">=</span> <span class="n">get_folium_tile_layer</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Left Layer&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">right</span> <span class="o">==</span> <span class="s2">&quot;cartodbpositron&quot;</span><span class="p">:</span>
+            <span class="n">right_tile_layer</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right_tile_layer</span> <span class="o">=</span> <span class="n">get_folium_tile_layer</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Right Layer&quot;</span><span class="p">)</span>
+
+        <span class="n">left_tile_layer</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">right_tile_layer</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="n">side_by_side</span> <span class="o">=</span> <span class="n">plugins</span><span class="o">.</span><span class="n">SideBySideLayers</span><span class="p">(</span><span class="n">left_tile_layer</span><span class="p">,</span> <span class="n">right_tile_layer</span><span class="p">)</span>
+        <span class="n">side_by_side</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">())</span>
 </code></pre></div>
         </details>
 
@@ -1512,6 +1567,112 @@ Examples: 'OpenStreetMap', 'Esri.WorldImagery', 'OpenTopoMap'.</p></td>
     <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
     <span class="n">geojson</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">__geo_interface__</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">add_geojson</span><span class="p">(</span><span class="n">geojson</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="gtlparser.foliumap.Map.add_split_map" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">add_split_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="s1">&#39;openstreetmap&#39;</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="s1">&#39;cartodbpositron&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#gtlparser.foliumap.Map.add_split_map" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Adds a split map to the map.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>left</code></td>
+        <td><code>folium.Map</code></td>
+        <td><p>The left map to be added.</p></td>
+        <td><code>&#39;openstreetmap&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>right</code></td>
+        <td><code>folium.Map</code></td>
+        <td><p>The right map to be added.</p></td>
+        <td><code>&#39;cartodbpositron&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td></td>
+        <td><p>Additional keyword arguments for folium.SplitMap.</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>None</code></td>
+      <td><p>Adds the split map to the map.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>gtlparser/foliumap.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_split_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="s2">&quot;openstreetmap&quot;</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="s2">&quot;cartodbpositron&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds a split map to the map.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        left (folium.Map): The left map to be added.</span>
+<span class="sd">        right (folium.Map): The right map to be added.</span>
+<span class="sd">        **kwargs: Additional keyword arguments for folium.SplitMap.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None: Adds the split map to the map.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Directly pass the &#39;left&#39; and &#39;right&#39; arguments (URLs or file paths)</span>
+    <span class="c1"># to get_leaflet_tile_layer</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">localtileserver</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_folium_tile_layer</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">folium</span><span class="w"> </span><span class="kn">import</span> <span class="n">plugins</span>
+
+    <span class="k">if</span> <span class="n">left</span> <span class="o">==</span> <span class="s2">&quot;openstreetmap&quot;</span><span class="p">:</span>
+        <span class="n">left_tile_layer</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">left_tile_layer</span> <span class="o">=</span> <span class="n">get_folium_tile_layer</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Left Layer&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">right</span> <span class="o">==</span> <span class="s2">&quot;cartodbpositron&quot;</span><span class="p">:</span>
+        <span class="n">right_tile_layer</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">right_tile_layer</span> <span class="o">=</span> <span class="n">get_folium_tile_layer</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Right Layer&quot;</span><span class="p">)</span>
+
+    <span class="n">left_tile_layer</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="n">right_tile_layer</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="n">side_by_side</span> <span class="o">=</span> <span class="n">plugins</span><span class="o">.</span><span class="n">SideBySideLayers</span><span class="p">(</span><span class="n">left_tile_layer</span><span class="p">,</span> <span class="n">right_tile_layer</span><span class="p">)</span>
+    <span class="n">side_by_side</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">())</span>
 </code></pre></div>
         </details>
     </div>
