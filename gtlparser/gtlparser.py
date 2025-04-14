@@ -64,7 +64,7 @@ class Map(ipyleaflet.Map):
                 If None, defaults to a predefined list.
             position (str): Position of the widget on the map.
                 Options: 'topleft', 'topright', 'bottomleft', 'bottomright'.
-        
+
         Behavior:
             - A toggle button to show/hide the dropdown and close button.
             - A dropdown menu to select the basemap.
@@ -82,9 +82,9 @@ class Map(ipyleaflet.Map):
                 "Esri.WorldImagery",
                 "CartoDB.DarkMatter",
             ]
-        
+
         toggle = widgets.ToggleButton(
-            value=True, 
+            value=True,
             button_style="",
             tooltip="Click me",
             icon="map",

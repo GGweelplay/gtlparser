@@ -153,7 +153,9 @@ class Map(folium.Map):
         else:
             layer_right = folium.TileLayer(right, overlay=True, **kwargs)
 
-        sbs = folium = pplugins.SideBySideLayers(layer_left=layer_left, layer_right=layer_right)
+        sbs = folium = pplugins.SideBySideLayers(
+            layer_left=layer_left, layer_right=layer_right
+        )
 
         layer_left.add_to(self)
         layer_right.add_to(self)
