@@ -142,6 +142,7 @@ class Map(folium.Map):
 
         import os
         from localtileserver import get_folium_tile_layer
+        import folium
         from folium import plugins
 
         if left.startswith("http") or os.path.exists(left):
