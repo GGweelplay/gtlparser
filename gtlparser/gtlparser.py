@@ -128,7 +128,7 @@ class Map(ipyleaflet.Map):
                 self.add_basemap(change["new"])
 
         dropdown.observe(on_dropdown_change, names="value")
-        
+
         control = ipyleaflet.WidgetControl(weidth=hbox, position=position)
         self.add(control)
 
