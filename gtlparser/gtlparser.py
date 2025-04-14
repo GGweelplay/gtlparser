@@ -120,7 +120,7 @@ class Map(ipyleaflet.Map):
             dropdown.close()
             button.close()
 
-        botton.on_click(on_button_click)
+        button.on_click(on_button_click)
 
         def on_dropdown_change(change):
             if change["new"]:
