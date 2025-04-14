@@ -143,20 +143,18 @@ class Map(folium.Map):
         from localtileserver import get_folium_tile_layer
         from folium import plugins
 
-        if left == "openstreetmap":
-            left_tile_layer = folium.TileLayer(left)
+        if left.startswith("http") or os.path.exists(left):
+            layer_left = get_folium_tile_layer(left, **kwargs)
         else:
-            left_tile_layer = get_folium_tile_layer(left, name="Left Layer")
+            layer_left = folium.TileLayer(left, overlay=True, **kwargs)
 
-        if right == "cartodbpositron":
-            right_tile_layer = folium.TileLayer(right)
+        if right.startswith("http") or os.path.exists(right):
+            layer_right = get_folium_tile_layer(right, **kwargs)
         else:
-            right_tile_layer = get_folium_tile_layer(right, name="Right Layer")
+            layer_right = folium.TileLayer(right, overlay=True, **kwargs)
 
-        left_tile_layer.add_to(self)
-        right_tile_layer.add_to(self)
+        sbs = folium = pplugins.SideBySideLayers(layer_left=layer_left, layer_right=layer_right)
 
-        side_by_side = plugins.SideBySideLayers(left_tile_layer, right_tile_layer)
-        side_by_side.add_to(self)
-
-        self.add_child(folium.LayerControl())
+        layer_left.add_to(self)
+        layer_right.add_to(self)
+        sbs.add_to(self)
