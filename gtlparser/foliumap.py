@@ -140,6 +140,7 @@ class Map(folium.Map):
         # Directly pass the 'left' and 'right' arguments (URLs or file paths)
         # to get_leaflet_tile_layer
 
+        import os
         from localtileserver import get_folium_tile_layer
         from folium import plugins
 
@@ -153,7 +154,7 @@ class Map(folium.Map):
         else:
             layer_right = folium.TileLayer(right, overlay=True, **kwargs)
 
-        sbs = folium = pplugins.SideBySideLayers(
+        sbs = folium = plugins.SideBySideLayers(
             layer_left=layer_left, layer_right=layer_right
         )
 

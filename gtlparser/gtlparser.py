@@ -97,7 +97,7 @@ class Map(ipyleaflet.Map):
             description="Basemap: ",
             style={"description_width": "initial"},
         )
-        dropdown.layout = wiedgets.Layout(width="250px", height="38px")
+        dropdown.layout = widgets.Layout(width="250px", height="38px")
 
         button = widgets.Button(
             icon="times",
@@ -127,6 +127,8 @@ class Map(ipyleaflet.Map):
                 self.layers = self.layers[:-2]
                 self.add_basemap(change["new"])
 
+        dropdown.observe(on_dropdown_change, names="value")
+        
         control = ipyleaflet.WidgetControl(weidth=hbox, position=position)
         self.add(control)
 
