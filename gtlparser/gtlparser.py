@@ -267,7 +267,7 @@ class Map(ipyleaflet.Map):
         """
         from localtileserver import TileClient, get_leaflet_tile_layer
 
-        client = ipyleaflet.TileLayer(filepath)
+        client = TileClient(filepath)
         tile_layer = get_leaflet_tile_layer(
             client, colormap=colormap, opacity=opacity, **kwargs
         )
