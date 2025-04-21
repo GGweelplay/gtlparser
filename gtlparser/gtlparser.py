@@ -261,6 +261,8 @@ class Map(ipyleaflet.Map):
 
         Args:
             filepath (str): Path to the raster file.
+            colormap (str): Colormap to be applied to the raster data.
+            opacity (float): Opacity of the raster layer (0.0 to 1.0).
             **kwargs: Additional keyword arguments for the ipyleaflet.ImageOverlay layer.
         """
         from localtileserver import TileClient, get_leaflet_tile_layer
@@ -280,6 +282,7 @@ class Map(ipyleaflet.Map):
         Args:
             image (str): Path to the image file.
             bounds (list): Bounds of the image in the format [[lat1, lon1], [lat2, lon2]].
+            opacity (float): Opacity of the image overlay (0.0 to 1.0).
             **kwargs: Additional keyword arguments for the ipyleaflet.ImageOverlay layer.
 
         Raises:
@@ -298,6 +301,7 @@ class Map(ipyleaflet.Map):
         Args:
             video (str): Path to the video file.
             bounds (list): Bounds of the video in the format [[lat1, lon1], [lat2, lon2]].
+            opacity (float): Opacity of the video overlay (0.0 to 1.0).
             **kwargs: Additional keyword arguments for the ipyleaflet.VideoOverlay layer.
 
         Raises:
@@ -316,7 +320,11 @@ class Map(ipyleaflet.Map):
         """Adds a WMS layer to the map.
 
         Args:
-            WMSLayer (str): URL of the WMS layer.
+            url (str): URL of the WMS layer.
+            layers (str): Comma-separated list of layer names.
+            name (str): Name of the layer.
+            format (str): Format of the layer (default: "image/png").
+            transparent (bool): Whether the layer is transparent (default: True).
             **kwargs: Additional keyword arguments for the ipyleaflet.WMSLayer layer.
 
         Raises:
