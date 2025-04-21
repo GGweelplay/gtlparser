@@ -256,7 +256,7 @@ class Map(ipyleaflet.Map):
         geojson = gdf.__geo_interface__
         self.add_geojson(geojson, **kwargs)
 
-    def add_raster(self, filepath, colormap="RdYlBu_11", opacity=1.0, **kwargs):
+    def add_raster(self, filepath, colormap="viridis", opacity=1.0, **kwargs):
         """Adds a raster layer to the map.
 
         Args:
