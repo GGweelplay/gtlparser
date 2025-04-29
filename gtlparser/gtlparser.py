@@ -5,7 +5,6 @@ import ipyleaflet
 import ipywidgets as widgets
 
 
-
 class Map(ipyleaflet.Map):
     """
     A custom Map class that inherits from ipyleaflet.Map and adds additional
@@ -146,7 +145,9 @@ class Map(ipyleaflet.Map):
             None: Adds the search control to the map.
         """
         url = "https://nominatim.openstreetmap.org/search?format=json&q={s}"
-        search_control = ipyleaflet.SearchControl(position=position, url=url, zoom=12, marker=None, **kwargs)
+        search_control = ipyleaflet.SearchControl(
+            position=position, url=url, zoom=12, marker=None, **kwargs
+        )
         self.add_control(search_control)
 
     def add_widget(self, widget, position="topright", **kwargs):
@@ -362,18 +363,16 @@ class Map(ipyleaflet.Map):
         except:
             raise ValueError(f"WMS Layer '{layer}' not found.")
 
-        
-
     def add_legend(
         self,
-        title = "Legend",
-        legend_dict = None,
-        labels = None,
-        colors = None,
-        position = "bottomright",
-        builtin_legend = None,
-        layer_name = None,
-        shape_type = "rectangle",
+        title="Legend",
+        legend_dict=None,
+        labels=None,
+        colors=None,
+        position="bottomright",
+        builtin_legend=None,
+        layer_name=None,
+        shape_type="rectangle",
         **kwargs,
     ):
         """Adds a customized basemap to the map.
@@ -390,7 +389,7 @@ class Map(ipyleaflet.Map):
         """
         # import importlib.resources
         from IPython.display import display
-        
+
         builtin_legends = {
             # National Land Cover Database 2016 (NLCD2016) Legend https://www.mrlc.gov/data/legends/national-land-cover-database-2016-nlcd2016-legend
             "NLCD": {
@@ -980,4 +979,3 @@ class Map(ipyleaflet.Map):
 
         except Exception as e:
             raise Exception(e)
-        
