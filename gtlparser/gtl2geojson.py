@@ -1,0 +1,125 @@
+from argparse import ArgumentParser
+import datetime
+import json
+import os
+from os.path import join as osjoin, splitext
+from osgeo import ogr
+from osgeo.ogr import Feature, FieldDefn, Geometry, GetDriverByName, wkbPoint
+from osgeo.osr import SpatialReference
+from geojson import Point, LineString, Feature, FeatureCollection, dump
+
+
+def parse_point_latlong(subset_visit):
+    temp_subset = subset_visit.get("topCandidate")
+    temp_lat, temp_long = (
+        temp_subset["placeLocation"]["latLng"].replace("°", "").split(", ")
+    )
+    return float(temp_lat), float(temp_long)
+
+
+def parse_hierarchyLevel(subset_visit):
+    return subset_visit["hierarchyLevel"]
+
+
+def parse_probability(subset_visit):
+    return subset_visit["probability"]
+
+
+def parse_topCadidate_placeId(subset_visit):
+    return subset_visit["topCandidate"]["placeId"]
+
+
+def parse_topCadidate_semanticType(subset_visit):
+    return subset_visit["topCandidate"]["semanticType"]
+
+
+def parse_topCadidate_probability(subset_visit):
+    return subset_visit["topCandidate"]["probability"]
+
+
+def parse_visitPoint(json_data, flag_allField=0):
+    point_features = []
+    for item in json_data["semanticSegments"]:
+        try:
+            item_keys = list(
+                item.keys()
+            )  # visit, timelinePath, timelineMemory, activity
+            if "visit" in item_keys:
+                # print("processing point...")
+                temp_startTime = item.get("startTime")
+                temp_endTime = item.get("endTime")
+                subset_visit = item.get("visit")
+                temp_lat, temp_long = parse_point_latlong(subset_visit)
+                temp_point = Point((temp_long, temp_lat))
+                if flag_allField == 1:
+                    point_output = {
+                        "startTime": temp_startTime,
+                        "endTime": temp_endTime,
+                        "hierarchyLevel": parse_hierarchyLevel(subset_visit),
+                        "probability": parse_probability(subset_visit),
+                        "placeId": parse_topCadidate_placeId(subset_visit),
+                        "semanticType": parse_topCadidate_semanticType(subset_visit),
+                        "topCadidate_probability": parse_topCadidate_probability(
+                            subset_visit
+                        ),
+                    }
+                    point_features.append(
+                        Feature(geometry=temp_point, properties=point_output)
+                    )
+                else:
+                    point_output = {
+                        "startTime": temp_startTime,
+                        "endTime": temp_endTime,
+                    }
+                    point_features.append(
+                        Feature(geometry=temp_point, properties=point_output)
+                    )
+        except Exception as e:
+            raise Exception(e)
+    feature_collection_point = FeatureCollection(point_features)
+    return feature_collection_point
+
+
+def parse_timelinePath(json_data):
+    line_features = []
+    for item in json_data["semanticSegments"]:
+        try:
+            item_keys = list(
+                item.keys()
+            )  # visit, timelinePath, timelineMemory, activity
+            if "timelinePath" in item_keys:
+                temp_startTime = item.get("startTime")
+                temp_endTime = item.get("endTime")
+                list_points = []
+                for timeline_path in item["timelinePath"]:
+                    latitude, longitude = (
+                        timeline_path["point"].replace("°", "").split(", ")
+                    )
+                    time = datetime.strptime(
+                        timeline_path["time"], "%Y-%m-%dT%H:%M:%S.%f%z"
+                    )
+                    list_points.append((float(longitude), float(latitude)))
+                if len(list_points) > 1:
+                    temp_line = LineString(list_points)
+                    line_features.append(
+                        Feature(
+                            geometry=temp_line,
+                            properties={
+                                "startTime": temp_startTime,
+                                "endTime": temp_endTime,
+                            },
+                        )
+                    )
+        except Exception as e:
+            raise Exception(e)
+    feature_collection_line = FeatureCollection(line_features)
+    return feature_collection_line
+
+
+def create_geojson_file(output_path, output_name, feature_collection, flag_point=True):
+    if flag_point:
+        with open(f"{output_path}/point_{output_name}.geojson", "w") as f:
+            dump(feature_collection, f)
+    else:
+        with open(f"{output_path}/line_{output_name}.geojson", "w") as f:
+            dump(feature_collection, f)
