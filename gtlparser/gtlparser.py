@@ -25,6 +25,51 @@ class Map(ipyleaflet.Map):
         self.layout.height = height
         self.scroll_wheel_zoom = True
 
+        self.output_widget = widgets.Output()
+
+        self.info_control = ipyleaflet.WidgetControl(
+            widget=self.output_widget, position="bottomright"
+        )
+
+        self.add_control(self.info_control)
+
+        self._setup_hover_handler()
+
+    def _setup_hover_handler(self):
+        """
+        Defines the internal hover handler method.
+        """
+        from IPython.display import display
+
+        def hover_handler(event=None, feature=None, **kwargs):
+            self.output_widget.clear_output()
+
+            with self.output_widget:
+                if feature:
+                    properties = feature["properties"]
+
+                    info_html = """
+                    <div style="padding: 5px; background-color: white; border: 1px solid grey;">
+                    """
+                    info_html += "<b>Properties:</b><br>"
+                    if properties:
+                        for key, value in properties.items():
+                            if key.lower() not in [
+                                "geometry",
+                                "shape_length",
+                                "shape_area",
+                            ]:
+                                info_html += f"<b>{key}:</b> {value}<br>"
+                    else:
+                        info_html += "No properties available."
+
+                    info_html += "</div>"
+                    display(widgets.HTML(info_html))
+                else:
+                    display(widgets.HTML("Hover over a feature"))
+
+        self.hover_handler_method = hover_handler
+
     def add_basemap(self, basemap="OpenStreetMap", **kwargs):
         """
         Adds a basemap to the map.
@@ -225,29 +270,85 @@ class Map(ipyleaflet.Map):
         layer = ipyleaflet.TileLayer(url=url, name="Google Maps")
         self.add(layer)
 
-    def add_geojson(self, data, hover_style=None, **kwargs):
-        """Adds a GeoJSON layer to the map.
+    def add_geojson(self, data, layer_style=None, hover_style=None, **kwargs):
+        """Adds a GeoJSON layer to the map with automatic hover inspection.
 
         Args:
             data (str or dict): The GeoJson data. Can be a file path (str) or a dictionary.
-            hover_style (dict, optional): Style to apply when hovering over features. Defaults to {"color": "yellow", "fillOpacity": 0.2}
-            **kwargs: Additinoal keyword arguments for the ipyleaflet.GeoJSON layer.
-
-        Raises:
-            ValueError: If the data type is invalid
+            hover_style (dict, optional): Style to apply when hovering over features.
+                                         Defaults to {"color": "yellow", "fillOpacity": 0.2} for polygons,
+                                         {"color": "yellow", "weight": 4} for lines,
+                                         {"radius": 7, "color": "yellow", "fillColor": "yellow", "fillOpacity": 0.8} for points.
+            **kwargs: Additional keyword arguments for the ipyleaflet.GeoJSON layer.
         """
         import geopandas as gpd
 
-        if hover_style is None:
-            hover_style = {"color": "yellow", "fillOpacity": 0.2}
-
         if isinstance(data, str):
-            gdf = gpd.read_file(data)
-            geojson = gdf.__geo_interface__
+            try:
+                gdf = gpd.read_file(data)
+                geojson_data = gdf.__geo_interface__
+                geometry_type = (
+                    gdf.geometry.iloc[0].geom_type if not gdf.empty else None
+                )
+            except Exception as e:
+                print(f"Error reading GeoJSON file: {e}")
+                return
         elif isinstance(data, dict):
-            geojson = data
-        layer = ipyleaflet.GeoJSON(data=geojson, hover_style=hover_style, **kwargs)
-        self.add(layer)
+            geojson_data = data
+            geometry_type = (
+                geojson_data["features"][0]["geometry"]["type"]
+                if geojson_data.get("features")
+                else None
+            )
+        else:
+            raise ValueError("Data must be a file path (str) or a dictionary.")
+        print(geometry_type)
+
+        if layer_style is None:
+            if geometry_type == "Polygon":
+                layer_style = {"color": "blue", "fillOpacity": 0.5}
+            elif geometry_type == "LineString":
+                layer_style = {"color": "blue", "weight": 3, "opacity": 0.8}
+            elif geometry_type == "Point":
+                layer_style = {
+                    "radius": 5,
+                    "color": "blue",
+                    "fillColor": "#3388ff",
+                    "fillOpacity": 0.8,
+                    "weight": 1,
+                }
+            else:
+                layer_style = {}
+
+        if hover_style is None:
+            if geometry_type == "Polygon":
+                hover_style = {"color": "yellow", "fillOpacity": 0.2}
+            elif geometry_type == "LineString":
+                hover_style = {"color": "yellow", "weight": 4, "opacity": 1}
+            elif geometry_type == "Point":
+                hover_style = {"fillColor": "red", "fillOpacity": 1}
+            else:
+                hover_style = {}
+
+        print(layer_style, hover_style)
+
+        if geometry_type == "Point":
+            layer = ipyleaflet.GeoJSON(
+                data=geojson_data,
+                point_style=layer_style,
+                hover_style=hover_style,
+                **kwargs,
+            )
+        elif geometry_type == "LineString":
+            layer = ipyleaflet.GeoJSON(
+                data=geojson_data, style=layer_style, hover_style=hover_style, **kwargs
+            )
+        elif geometry_type == "Polygon":
+            layer = ipyleaflet.GeoJSON(
+                data=geojson_data, style=layer_style, hover_style=hover_style, **kwargs
+            )
+        layer.on_hover(self.hover_handler_method)
+        self.add_layer(layer)
 
     def add_shp(self, data, **kwargs):
         """Adds a shapefile layer to the map.
