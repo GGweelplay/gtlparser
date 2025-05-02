@@ -3,6 +3,7 @@
 import os
 import ipyleaflet
 import ipywidgets as widgets
+import gtl2geojson
 
 
 class Map(ipyleaflet.Map):
