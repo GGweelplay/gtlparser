@@ -41,6 +41,24 @@ def parse_topCadidate_semanticType(subset_visit):
 def parse_topCadidate_probability(subset_visit):
     return subset_visit["topCandidate"]["probability"]
 
+def read_json_from_url(url):
+    """
+    Read JSON data from a URL.
+    """
+    
+    import requests
+    import json
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Request failed: {e}")
+        return None
+    except json.decoder.JSONDecodeError as e:
+         print(f"JSON Decode error: {e}")
+         return None
 
 def parse_visitPoint(in_json, flag_allField=0):
     """
@@ -53,9 +71,10 @@ def parse_visitPoint(in_json, flag_allField=0):
     Returns:
         FeatureCollection: A collection of point features extracted from the JSON data.
     """
-    import json
-
-    json_data = json.loads(open(in_json, encoding="utf8").read())
+    if in_json.startswith("http://") or in_json.startswith("https://"):
+        json_data = read_json_from_url(in_json)
+    elif os.path.exists(in_json):
+        json_data = json.loads(open(in_json, encoding="utf8").read())
 
     point_features = []
     for item in json_data["semanticSegments"]:
@@ -109,9 +128,10 @@ def parse_timelinePath(in_json):
     Returns:
         FeatureCollection: A collection of line features extracted from the JSON data.
     """
-    import json
-
-    json_data = json.loads(open(in_json, encoding="utf8").read())
+    if in_json.startswith("http://") or in_json.startswith("https://"):
+        json_data = read_json_from_url(in_json)
+    elif os.path.exists(in_json):
+        json_data = json.loads(open(in_json, encoding="utf8").read())
 
     line_features = []
     for item in json_data["semanticSegments"]:
