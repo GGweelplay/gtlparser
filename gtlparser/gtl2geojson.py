@@ -41,11 +41,12 @@ def parse_topCadidate_semanticType(subset_visit):
 def parse_topCadidate_probability(subset_visit):
     return subset_visit["topCandidate"]["probability"]
 
+
 def read_json_from_url(url):
     """
     Read JSON data from a URL.
     """
-    
+
     import requests
     import json
 
@@ -57,8 +58,9 @@ def read_json_from_url(url):
         print(f"Request failed: {e}")
         return None
     except json.decoder.JSONDecodeError as e:
-         print(f"JSON Decode error: {e}")
-         return None
+        print(f"JSON Decode error: {e}")
+        return None
+
 
 def parse_visitPoint(in_json, flag_allField=0):
     """
