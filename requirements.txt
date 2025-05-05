@@ -1,5 +1,6 @@
 
 folium
+gdal==3.10.2
 geopandas
 ipyleaflet
 leafmap
@@ -7,4 +8,3 @@ localtileserver
 mapclassify
 matplotlib
 numpy
-gdal==3.10.2 
