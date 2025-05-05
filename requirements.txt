@@ -7,3 +7,4 @@ mapclassify
 matplotlib
 numpy
 
+./libs/gdal-3.10.2-cp312-cp312-win_amd64.whl
