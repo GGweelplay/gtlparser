@@ -1,6 +1,5 @@
 
 folium
-gdal
 geopandas
 ipyleaflet
 leafmap

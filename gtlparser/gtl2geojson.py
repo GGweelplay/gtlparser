@@ -4,9 +4,6 @@ from datetime import datetime
 import json
 import os
 from os.path import join as osjoin, splitext
-from osgeo import ogr
-from osgeo.ogr import Feature, FieldDefn, Geometry, GetDriverByName, wkbPoint
-from osgeo.osr import SpatialReference
 from geojson import Point, LineString, Feature, FeatureCollection, dump
 
 
