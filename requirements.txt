@@ -1,5 +1,4 @@
 
-./libs/gdal-3.10.2-cp312-cp312-win_amd64.whl
 folium
 geopandas
 ipyleaflet
@@ -8,3 +7,4 @@ localtileserver
 mapclassify
 matplotlib
 numpy
+gdal==3.10.2 
