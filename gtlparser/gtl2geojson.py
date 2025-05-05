@@ -1,5 +1,6 @@
 from argparse import ArgumentParser
 import datetime
+from datetime import datetime
 import json
 import os
 from os.path import join as osjoin, splitext
@@ -10,6 +11,10 @@ from geojson import Point, LineString, Feature, FeatureCollection, dump
 
 
 def parse_point_latlong(subset_visit):
+    """
+    Parse the latitude and longitude from the subset_visit dictionary.
+    """
+
     temp_subset = subset_visit.get("topCandidate")
     temp_lat, temp_long = (
         temp_subset["placeLocation"]["latLng"].replace("°", "").split(", ")
@@ -37,7 +42,21 @@ def parse_topCadidate_probability(subset_visit):
     return subset_visit["topCandidate"]["probability"]
 
 
-def parse_visitPoint(json_data, flag_allField=0):
+def parse_visitPoint(in_json, flag_allField=0):
+    """
+    Parse the visit point from the json_data dictionary.
+
+    Args:
+        json_data (dict): The JSON data containing the visit point information.
+        flag_allField (int): Flag to indicate whether to include all fields in the output.
+
+    Returns:
+        FeatureCollection: A collection of point features extracted from the JSON data.
+    """
+    import json
+
+    json_data = json.loads(open(in_json, encoding="utf8").read())
+
     point_features = []
     for item in json_data["semanticSegments"]:
         try:
@@ -80,7 +99,20 @@ def parse_visitPoint(json_data, flag_allField=0):
     return feature_collection_point
 
 
-def parse_timelinePath(json_data):
+def parse_timelinePath(in_json):
+    """
+    Parse the timeline path from the json_data dictionary.
+
+    Args:
+        json_data (dict): The JSON data containing the timeline path information.
+
+    Returns:
+        FeatureCollection: A collection of line features extracted from the JSON data.
+    """
+    import json
+
+    json_data = json.loads(open(in_json, encoding="utf8").read())
+
     line_features = []
     for item in json_data["semanticSegments"]:
         try:
@@ -117,6 +149,18 @@ def parse_timelinePath(json_data):
 
 
 def create_geojson_file(output_path, output_name, feature_collection, flag_point=True):
+    """
+    Create a GeoJSON file from the feature collection.
+
+    Args:
+        output_path (str): The path where the GeoJSON file will be saved.
+        output_name (str): The name of the output GeoJSON file.
+        feature_collection (FeatureCollection): The feature collection to be saved.
+        flag_point (bool): Flag to indicate whether the features are points or lines.
+
+    Returns:
+        None
+    """
     if flag_point:
         with open(f"{output_path}/point_{output_name}.geojson", "w") as f:
             dump(feature_collection, f)
