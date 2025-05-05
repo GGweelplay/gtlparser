@@ -48,7 +48,7 @@ def parse_visitPoint(json_data, flag_allField=0):
     Args:
         json_data (dict): The JSON data containing the visit point information.
         flag_allField (int): Flag to indicate whether to include all fields in the output.
-    
+
     Returns:
         FeatureCollection: A collection of point features extracted from the JSON data.
     """
@@ -98,10 +98,10 @@ def parse_visitPoint(json_data, flag_allField=0):
 def parse_timelinePath(json_data):
     """
     Parse the timeline path from the json_data dictionary.
-    
+
     Args:
         json_data (dict): The JSON data containing the timeline path information.
-        
+
     Returns:
         FeatureCollection: A collection of line features extracted from the JSON data.
     """
@@ -143,7 +143,7 @@ def parse_timelinePath(json_data):
 def create_geojson_file(output_path, output_name, feature_collection, flag_point=True):
     """
     Create a GeoJSON file from the feature collection.
-    
+
     Args:
         output_path (str): The path where the GeoJSON file will be saved.
         output_name (str): The name of the output GeoJSON file.

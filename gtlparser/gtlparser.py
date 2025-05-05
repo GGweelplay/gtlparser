@@ -28,13 +28,12 @@ class Map(ipyleaflet.Map):
         self.output_widget = widgets.Output()
 
         self.info_control = ipyleaflet.WidgetControl(
-            widget=self.output_widget,
-            position='bottomright' 
+            widget=self.output_widget, position="bottomright"
         )
 
         self.add_control(self.info_control)
 
-        self._setup_hover_handler() 
+        self._setup_hover_handler()
 
     def _setup_hover_handler(self):
         """
@@ -55,7 +54,7 @@ class Map(ipyleaflet.Map):
 
             with self.output_widget:
                 if feature:
-                    properties = feature['properties']
+                    properties = feature["properties"]
 
                     info_html = """
                     <div style="padding: 5px; background-color: white; border: 1px solid grey;">
@@ -63,7 +62,11 @@ class Map(ipyleaflet.Map):
                     info_html += "<b>Properties:</b><br>"
                     if properties:
                         for key, value in properties.items():
-                            if key.lower() not in ['geometry', 'shape_length', 'shape_area']:
+                            if key.lower() not in [
+                                "geometry",
+                                "shape_length",
+                                "shape_area",
+                            ]:
                                 info_html += f"<b>{key}:</b> {value}<br>"
                     else:
                         info_html += "No properties available."
@@ -72,6 +75,7 @@ class Map(ipyleaflet.Map):
                     display(widgets.HTML(info_html))
                 else:
                     display(widgets.HTML("Hover over a feature"))
+
         self.hover_handler_method = hover_handler
 
     def add_basemap(self, basemap="OpenStreetMap", **kwargs):
@@ -295,45 +299,66 @@ class Map(ipyleaflet.Map):
             try:
                 gdf = gpd.read_file(data)
                 geojson_data = gdf.__geo_interface__
-                geometry_type = gdf.geometry.iloc[0].geom_type if not gdf.empty else None
+                geometry_type = (
+                    gdf.geometry.iloc[0].geom_type if not gdf.empty else None
+                )
             except Exception as e:
                 print(f"Error reading GeoJSON file: {e}")
                 return
         elif isinstance(data, dict):
             geojson_data = data
-            geometry_type = geojson_data['features'][0]['geometry']['type'] if geojson_data.get('features') else None
+            geometry_type = (
+                geojson_data["features"][0]["geometry"]["type"]
+                if geojson_data.get("features")
+                else None
+            )
         else:
             raise ValueError("Data must be a file path (str) or a dictionary.")
         print(geometry_type)
 
         if layer_style is None:
-            if geometry_type == 'Polygon':
+            if geometry_type == "Polygon":
                 layer_style = {"color": "blue", "fillOpacity": 0.5}
-            elif geometry_type == 'LineString':
+            elif geometry_type == "LineString":
                 layer_style = {"color": "blue", "weight": 3, "opacity": 0.8}
-            elif geometry_type == 'Point':
-                layer_style = {"radius": 5, "color": "blue", 'fillColor': '#3388ff', 'fillOpacity': 0.8, 'weight': 1}
+            elif geometry_type == "Point":
+                layer_style = {
+                    "radius": 5,
+                    "color": "blue",
+                    "fillColor": "#3388ff",
+                    "fillOpacity": 0.8,
+                    "weight": 1,
+                }
             else:
                 layer_style = {}
 
         if hover_style is None:
-            if geometry_type == 'Polygon':
+            if geometry_type == "Polygon":
                 hover_style = {"color": "yellow", "fillOpacity": 0.2}
-            elif geometry_type == 'LineString':
-                 hover_style = {"color": "yellow", "weight": 4, "opacity": 1}
-            elif geometry_type == 'Point':
-                 hover_style = {'fillColor': 'red', 'fillOpacity': 1}
+            elif geometry_type == "LineString":
+                hover_style = {"color": "yellow", "weight": 4, "opacity": 1}
+            elif geometry_type == "Point":
+                hover_style = {"fillColor": "red", "fillOpacity": 1}
             else:
                 hover_style = {}
 
         print(layer_style, hover_style)
-        
-        if geometry_type == 'Point':
-            layer = ipyleaflet.GeoJSON(data=geojson_data, point_style=layer_style, hover_style=hover_style, **kwargs)
-        elif geometry_type == 'LineString':
-            layer = ipyleaflet.GeoJSON(data=geojson_data, style=layer_style, hover_style=hover_style, **kwargs)
-        elif geometry_type == 'Polygon':
-            layer = ipyleaflet.GeoJSON(data=geojson_data, style=layer_style, hover_style=hover_style, **kwargs)
+
+        if geometry_type == "Point":
+            layer = ipyleaflet.GeoJSON(
+                data=geojson_data,
+                point_style=layer_style,
+                hover_style=hover_style,
+                **kwargs,
+            )
+        elif geometry_type == "LineString":
+            layer = ipyleaflet.GeoJSON(
+                data=geojson_data, style=layer_style, hover_style=hover_style, **kwargs
+            )
+        elif geometry_type == "Polygon":
+            layer = ipyleaflet.GeoJSON(
+                data=geojson_data, style=layer_style, hover_style=hover_style, **kwargs
+            )
         layer.on_hover(self.hover_handler_method)
         self.add_layer(layer)
 
