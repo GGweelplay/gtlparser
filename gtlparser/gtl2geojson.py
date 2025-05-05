@@ -41,7 +41,7 @@ def parse_topCadidate_probability(subset_visit):
     return subset_visit["topCandidate"]["probability"]
 
 
-def parse_visitPoint(json_data, flag_allField=0):
+def parse_visitPoint(in_json, flag_allField=0):
     """
     Parse the visit point from the json_data dictionary.
 
@@ -52,6 +52,9 @@ def parse_visitPoint(json_data, flag_allField=0):
     Returns:
         FeatureCollection: A collection of point features extracted from the JSON data.
     """
+    import json
+
+    json_data = json.loads(open(in_json, encoding="utf8").read())
 
     point_features = []
     for item in json_data["semanticSegments"]:
@@ -95,7 +98,7 @@ def parse_visitPoint(json_data, flag_allField=0):
     return feature_collection_point
 
 
-def parse_timelinePath(json_data):
+def parse_timelinePath(in_json):
     """
     Parse the timeline path from the json_data dictionary.
 
@@ -105,6 +108,10 @@ def parse_timelinePath(json_data):
     Returns:
         FeatureCollection: A collection of line features extracted from the JSON data.
     """
+    import json
+
+    json_data = json.loads(open(in_json, encoding="utf8").read())
+
     line_features = []
     for item in json_data["semanticSegments"]:
         try:
