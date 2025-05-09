@@ -28,10 +28,10 @@ def parse_point_latlong(subset_visit):
 def parse_hierarchyLevel(subset_visit):
     """
     Parse the hierarchy level from the subset_visit dictionary.
-    
+
     Args:
         subset_visit (dict): The subset visit dictionary containing the hierarchy level.
-        
+
     Returns:
         str: The hierarchy level of the visit.
     """
@@ -41,10 +41,10 @@ def parse_hierarchyLevel(subset_visit):
 def parse_probability(subset_visit):
     """
     Parse the probability from the subset_visit dictionary.
-    
+
     Args:
         subset_visit (dict): The subset visit dictionary containing the probability.
-        
+
     Returns:
         float: The probability of the visit.
     """
@@ -67,10 +67,10 @@ def parse_topCadidate_placeId(subset_visit):
 def parse_topCadidate_semanticType(subset_visit):
     """
     Parse the semantic type from the subset_visit dictionary.
-    
+
     Args:
         subset_visit (dict): The subset visit dictionary containing the semantic type.
-        
+
     Returns:
         str: The semantic type of the visit.
     """
@@ -80,10 +80,10 @@ def parse_topCadidate_semanticType(subset_visit):
 def parse_topCadidate_probability(subset_visit):
     """
     Parse the top candidate probability from the subset_visit dictionary.
-    
+
     Args:
         subset_visit (dict): The subset visit dictionary containing the top candidate probability.
-        
+
     Returns:
         float: The top candidate probability of the visit.
     """
