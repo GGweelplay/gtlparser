@@ -10,6 +10,12 @@ from geojson import Point, LineString, Feature, FeatureCollection, dump
 def parse_point_latlong(subset_visit):
     """
     Parse the latitude and longitude from the subset_visit dictionary.
+
+    Args:
+        subset_visit (dict): The subset visit dictionary containing the location information.
+
+    Returns:
+        The latitude and longitude as floats.
     """
 
     temp_subset = subset_visit.get("topCandidate")
@@ -20,28 +26,79 @@ def parse_point_latlong(subset_visit):
 
 
 def parse_hierarchyLevel(subset_visit):
+    """
+    Parse the hierarchy level from the subset_visit dictionary.
+    
+    Args:
+        subset_visit (dict): The subset visit dictionary containing the hierarchy level.
+        
+    Returns:
+        str: The hierarchy level of the visit.
+    """
     return subset_visit["hierarchyLevel"]
 
 
 def parse_probability(subset_visit):
+    """
+    Parse the probability from the subset_visit dictionary.
+    
+    Args:
+        subset_visit (dict): The subset visit dictionary containing the probability.
+        
+    Returns:
+        float: The probability of the visit.
+    """
     return subset_visit["probability"]
 
 
 def parse_topCadidate_placeId(subset_visit):
+    """
+    Parse the place ID from the subset_visit dictionary.
+
+    Args:
+        subset_visit (dict): The subset visit dictionary containing the place ID.
+
+    Returns:
+        str: The place ID of the visit.
+    """
     return subset_visit["topCandidate"]["placeId"]
 
 
 def parse_topCadidate_semanticType(subset_visit):
+    """
+    Parse the semantic type from the subset_visit dictionary.
+    
+    Args:
+        subset_visit (dict): The subset visit dictionary containing the semantic type.
+        
+    Returns:
+        str: The semantic type of the visit.
+    """
     return subset_visit["topCandidate"]["semanticType"]
 
 
 def parse_topCadidate_probability(subset_visit):
+    """
+    Parse the top candidate probability from the subset_visit dictionary.
+    
+    Args:
+        subset_visit (dict): The subset visit dictionary containing the top candidate probability.
+        
+    Returns:
+        float: The top candidate probability of the visit.
+    """
     return subset_visit["topCandidate"]["probability"]
 
 
 def read_json_from_url(url):
     """
     Read JSON data from a URL.
+
+    Args:
+        url (str): The URL to read the JSON data from.
+
+    Returns:
+        dict: The JSON data as a dictionary.
     """
 
     import requests
