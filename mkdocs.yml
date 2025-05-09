@@ -84,7 +84,6 @@ nav:
     - Changelog: changelog.md
     - Report Issues: https://github.com/GGweelplay/gtlparser/issues
     - Examples:
-        - examples/intro.ipynb
         - examples/map.ipynb
         - examples/foliumap.ipynb
         - examples/basemap.ipynb
