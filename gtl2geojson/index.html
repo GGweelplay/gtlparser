@@ -762,6 +762,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#gtlparser.gtl2geojson.parse_hierarchyLevel" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_hierarchyLevel()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gtlparser.gtl2geojson.parse_point_latlong" class="md-nav__link">
     <span class="md-ellipsis">
       parse_point_latlong()
@@ -771,9 +780,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#gtlparser.gtl2geojson.parse_probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_probability()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gtlparser.gtl2geojson.parse_timelinePath" class="md-nav__link">
     <span class="md-ellipsis">
       parse_timelinePath()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gtlparser.gtl2geojson.parse_topCadidate_placeId" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_topCadidate_placeId()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gtlparser.gtl2geojson.parse_topCadidate_probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_topCadidate_probability()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gtlparser.gtl2geojson.parse_topCadidate_semanticType" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_topCadidate_semanticType()
     </span>
   </a>
   
@@ -858,6 +903,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#gtlparser.gtl2geojson.parse_hierarchyLevel" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_hierarchyLevel()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gtlparser.gtl2geojson.parse_point_latlong" class="md-nav__link">
     <span class="md-ellipsis">
       parse_point_latlong()
@@ -867,9 +921,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#gtlparser.gtl2geojson.parse_probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_probability()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gtlparser.gtl2geojson.parse_timelinePath" class="md-nav__link">
     <span class="md-ellipsis">
       parse_timelinePath()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gtlparser.gtl2geojson.parse_topCadidate_placeId" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_topCadidate_placeId()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gtlparser.gtl2geojson.parse_topCadidate_probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_topCadidate_probability()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gtlparser.gtl2geojson.parse_topCadidate_semanticType" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse_topCadidate_semanticType()
     </span>
   </a>
   
@@ -1030,6 +1120,74 @@
 
 
 
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="gtlparser.gtl2geojson.parse_hierarchyLevel" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">parse_hierarchyLevel</span><span class="p">(</span><span class="n">subset_visit</span><span class="p">)</span></code>
+
+
+<a href="#gtlparser.gtl2geojson.parse_hierarchyLevel" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Parse the hierarchy level from the subset_visit dictionary.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>subset_visit</code></td>
+        <td><code>dict</code></td>
+        <td><p>The subset visit dictionary containing the hierarchy level.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>str</code></td>
+      <td><p>The hierarchy level of the visit.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>gtlparser/gtl2geojson.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_hierarchyLevel</span><span class="p">(</span><span class="n">subset_visit</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse the hierarchy level from the subset_visit dictionary.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subset_visit (dict): The subset visit dictionary containing the hierarchy level.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The hierarchy level of the visit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">subset_visit</span><span class="p">[</span><span class="s2">&quot;hierarchyLevel&quot;</span><span class="p">]</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
 
   <div class="doc doc-object doc-function">
 
@@ -1045,11 +1203,51 @@
 
       <p>Parse the latitude and longitude from the subset_visit dictionary.</p>
 
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>subset_visit</code></td>
+        <td><code>dict</code></td>
+        <td><p>The subset visit dictionary containing the location information.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td><p>The latitude and longitude as floats.</p></td>
+    </tr>
+  </tbody>
+</table>
         <details class="quote">
           <summary>Source code in <code>gtlparser/gtl2geojson.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_point_latlong</span><span class="p">(</span><span class="n">subset_visit</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parse the latitude and longitude from the subset_visit dictionary.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subset_visit (dict): The subset visit dictionary containing the location information.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The latitude and longitude as floats.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">temp_subset</span> <span class="o">=</span> <span class="n">subset_visit</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;topCandidate&quot;</span><span class="p">)</span>
@@ -1063,6 +1261,74 @@
 
   </div>
 
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="gtlparser.gtl2geojson.parse_probability" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">parse_probability</span><span class="p">(</span><span class="n">subset_visit</span><span class="p">)</span></code>
+
+
+<a href="#gtlparser.gtl2geojson.parse_probability" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Parse the probability from the subset_visit dictionary.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>subset_visit</code></td>
+        <td><code>dict</code></td>
+        <td><p>The subset visit dictionary containing the probability.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>float</code></td>
+      <td><p>The probability of the visit.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>gtlparser/gtl2geojson.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_probability</span><span class="p">(</span><span class="n">subset_visit</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse the probability from the subset_visit dictionary.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subset_visit (dict): The subset visit dictionary containing the probability.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The probability of the visit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">subset_visit</span><span class="p">[</span><span class="s2">&quot;probability&quot;</span><span class="p">]</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
 
 
 
@@ -1172,6 +1438,210 @@
 
 
 
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="gtlparser.gtl2geojson.parse_topCadidate_placeId" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">parse_topCadidate_placeId</span><span class="p">(</span><span class="n">subset_visit</span><span class="p">)</span></code>
+
+
+<a href="#gtlparser.gtl2geojson.parse_topCadidate_placeId" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Parse the place ID from the subset_visit dictionary.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>subset_visit</code></td>
+        <td><code>dict</code></td>
+        <td><p>The subset visit dictionary containing the place ID.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>str</code></td>
+      <td><p>The place ID of the visit.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>gtlparser/gtl2geojson.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_topCadidate_placeId</span><span class="p">(</span><span class="n">subset_visit</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse the place ID from the subset_visit dictionary.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subset_visit (dict): The subset visit dictionary containing the place ID.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The place ID of the visit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">subset_visit</span><span class="p">[</span><span class="s2">&quot;topCandidate&quot;</span><span class="p">][</span><span class="s2">&quot;placeId&quot;</span><span class="p">]</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="gtlparser.gtl2geojson.parse_topCadidate_probability" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">parse_topCadidate_probability</span><span class="p">(</span><span class="n">subset_visit</span><span class="p">)</span></code>
+
+
+<a href="#gtlparser.gtl2geojson.parse_topCadidate_probability" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Parse the top candidate probability from the subset_visit dictionary.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>subset_visit</code></td>
+        <td><code>dict</code></td>
+        <td><p>The subset visit dictionary containing the top candidate probability.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>float</code></td>
+      <td><p>The top candidate probability of the visit.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>gtlparser/gtl2geojson.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_topCadidate_probability</span><span class="p">(</span><span class="n">subset_visit</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse the top candidate probability from the subset_visit dictionary.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subset_visit (dict): The subset visit dictionary containing the top candidate probability.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The top candidate probability of the visit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">subset_visit</span><span class="p">[</span><span class="s2">&quot;topCandidate&quot;</span><span class="p">][</span><span class="s2">&quot;probability&quot;</span><span class="p">]</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="gtlparser.gtl2geojson.parse_topCadidate_semanticType" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">parse_topCadidate_semanticType</span><span class="p">(</span><span class="n">subset_visit</span><span class="p">)</span></code>
+
+
+<a href="#gtlparser.gtl2geojson.parse_topCadidate_semanticType" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Parse the semantic type from the subset_visit dictionary.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>subset_visit</code></td>
+        <td><code>dict</code></td>
+        <td><p>The subset visit dictionary containing the semantic type.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>str</code></td>
+      <td><p>The semantic type of the visit.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>gtlparser/gtl2geojson.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_topCadidate_semanticType</span><span class="p">(</span><span class="n">subset_visit</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse the semantic type from the subset_visit dictionary.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        subset_visit (dict): The subset visit dictionary containing the semantic type.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The semantic type of the visit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">subset_visit</span><span class="p">[</span><span class="s2">&quot;topCandidate&quot;</span><span class="p">][</span><span class="s2">&quot;semanticType&quot;</span><span class="p">]</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
 
 
 
@@ -1309,11 +1779,51 @@
 
       <p>Read JSON data from a URL.</p>
 
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>url</code></td>
+        <td><code>str</code></td>
+        <td><p>The URL to read the JSON data from.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>dict</code></td>
+      <td><p>The JSON data as a dictionary.</p></td>
+    </tr>
+  </tbody>
+</table>
         <details class="quote">
           <summary>Source code in <code>gtlparser/gtl2geojson.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_json_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Read JSON data from a URL.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        url (str): The URL to read the JSON data from.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: The JSON data as a dictionary.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
