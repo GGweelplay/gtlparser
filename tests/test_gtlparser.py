@@ -2,7 +2,6 @@
 
 """Tests for `gtlparser` package."""
 
-
 import unittest
 
 from gtlparser import gtlparser
